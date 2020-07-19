@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.SignalR;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,5 +9,18 @@ namespace SignalR.API.Hubs
 {
     public class MyHub:Hub
     {
+        //statik olmazsa her istek yapıldığında yenilenir.
+        public static List<string> Messages { get; set; } = new List<string>();
+
+        public async Task SendMessage(string message)
+        {
+            Messages.Add(message);
+            await Clients.All.SendAsync("ReceiveMessage", message);
+        }
+
+        public async Task GetMessages()
+        {
+            await Clients.All.SendAsync("ReceiveMessages", Messages);
+        }
     }
 }
