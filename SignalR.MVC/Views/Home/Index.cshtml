@@ -21,14 +21,28 @@
                 .withUrl("https://localhost:44335/myhub")
                 .build();
 
-            $("#connStatus").text(connection.connectionState);
+            function Start() {
+                connection.start()
+                    .then(() => {
+                        StatusShow();
+                        $("#loading").hide();
 
-            connection.start()
-                .then(() => {
-                    $("#connStatus").text(connection.connectionState);
-                    $("#loading").hide();
-                })
-                .catch(err => console.log(err));
+                        connection.invoke("GetMessages")
+                    })
+                    .catch(err => {
+                        console.log(err);
+                        setTimeout(() => Start(), 2000);
+                    });
+            }
+
+            function StatusShow() {
+                $("#connStatus").text(connection.connectionState);
+            }
+
+            StatusShow();
+            Start();
+
+
 
             $("#btnSaveMessage").click(() => {
 
@@ -42,20 +56,46 @@
                 $("#messageList").append("<li class=\"list-group-item\">" + message + "</li>");
             });
 
+            //bağlantı tekrar kurulmaya çalışıldığında
             connection.onreconnecting(err => {
                 $("#loading").show();
-                $("#connStatus").text(connection.connectionState);
+                StatusShow();
                 console.log("Hata:" + err);
             });
 
+            //bağlantı kurulduğunda
             connection.onreconnected(connectionId => {
                 $("#loading").hide();
-                $("#connStatus").text(connection.connectionState);
+                StatusShow();
+                console.log(connectionId);
             });
 
+            //bağlantı gittiğinde
             connection.onclose(() => {
                 $("#loading").hide();
-                $("#connStatus").text(connection.connectionState);
+                StatusShow();
+                Start();
+            });
+
+            connection.on("ReceiveClientCount", (clientCount) => {
+                $("#clientCount").text(clientCount);
+            });
+
+            connection.on("Notify", (countText) => {
+                $("#notify").html("<div class=\"alert alert-success\">Takımlar " + countText + " kişi olmalıdır.</div>");
+            });
+
+            connection.on("ReceiveMessages", (messages) => {
+                $("#messageList").empty();
+
+                messages.forEach((item, index) => {
+                    $("#messageList").append("<li class=\"list-group-item\">" + item + "</li>")
+                });
+            });
+
+
+            connection.on("Error", (errorText) => {
+                alert(errorText);
             });
         });
 
@@ -73,7 +113,8 @@
 
         <div class="alert alert-info">
             <div class="float-left">
-                Bağlantı Durumu:<strong id="connStatus"></strong>
+                Bağlantı Durumu:<strong id="connStatus"></strong>,
+                Client Sayısı <strong id="clientCount"></strong>
             </div>
             <div class="float-right">
                 <div id="loading" class="spinner-border" role="status">
@@ -82,6 +123,10 @@
             </div>
 
             <div class="clearfix"></div>
+
+        </div>
+
+        <div id="notify">
 
         </div>
     </div>
