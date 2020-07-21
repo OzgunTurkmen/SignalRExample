@@ -3,9 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30225.117
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalR.API", "SignalR.API\SignalR.API.csproj", "{53F360AE-4948-49C4-BC28-BD3809B06601}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SignalR.API", "SignalR.API\SignalR.API.csproj", "{53F360AE-4948-49C4-BC28-BD3809B06601}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalR.MVC", "SignalR.MVC\SignalR.MVC.csproj", "{411D3F16-40E5-47FC-A355-6F1327DD8E86}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SignalR.MVC", "SignalR.MVC\SignalR.MVC.csproj", "{411D3F16-40E5-47FC-A355-6F1327DD8E86}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ChatApp", "ChatApp", "{6EA6FBBA-2412-4CBB-8505-C42FF8360266}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatApp.API", "ChatApp\ChatApp.API\ChatApp.API.csproj", "{886017EC-DB28-4C7E-AB06-BEA9A44E8325}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatApp.MVC", "ChatApp\ChatApp.MVC\ChatApp.MVC.csproj", "{6B2D29D3-2DD3-47ED-AAFD-7519F873129D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,9 +27,21 @@ Global
 		{411D3F16-40E5-47FC-A355-6F1327DD8E86}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{411D3F16-40E5-47FC-A355-6F1327DD8E86}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{411D3F16-40E5-47FC-A355-6F1327DD8E86}.Release|Any CPU.Build.0 = Release|Any CPU
+		{886017EC-DB28-4C7E-AB06-BEA9A44E8325}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{886017EC-DB28-4C7E-AB06-BEA9A44E8325}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{886017EC-DB28-4C7E-AB06-BEA9A44E8325}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{886017EC-DB28-4C7E-AB06-BEA9A44E8325}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B2D29D3-2DD3-47ED-AAFD-7519F873129D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B2D29D3-2DD3-47ED-AAFD-7519F873129D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B2D29D3-2DD3-47ED-AAFD-7519F873129D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B2D29D3-2DD3-47ED-AAFD-7519F873129D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{886017EC-DB28-4C7E-AB06-BEA9A44E8325} = {6EA6FBBA-2412-4CBB-8505-C42FF8360266}
+		{6B2D29D3-2DD3-47ED-AAFD-7519F873129D} = {6EA6FBBA-2412-4CBB-8505-C42FF8360266}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {26B01023-145B-42E8-9B9D-35A80CE99F1D}
